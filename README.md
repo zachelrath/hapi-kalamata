@@ -2,18 +2,18 @@ Kalamata
 ========
 [![Build Status](https://travis-ci.org/mikec/kalamata.svg?branch=master)](https://travis-ci.org/mikec/kalamata)
 
-Fully extensible Node.js REST API framework for [Bookshelf.js](http://bookshelfjs.org/) and [Express](http://expressjs.com/)
+Fully extensible Node.js REST API framework for [Bookshelf.js](http://bookshelfjs.org/) and [Hapi](http://hapijs.com/)
 
 Try the sample app [kalamata-sample](https://github.com/mikec/kalamata-sample)
 
 Install
 -----------
-`cd` into your project and `npm install kalamata`
+`cd` into your project and `npm install hapi-kalamata`
 
 What it is
 -----------
 
-Kalamata helps you build REST APIs that run on Express. It creates some standard CRUD endpoints for you, and allows you to extend these with your application specific logic.
+Kalamata helps you build REST APIs that run on Hapi. It creates some standard CRUD endpoints for you, and allows you to extend these with your application specific logic.
 
 ### How it works
 
