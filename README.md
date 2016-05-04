@@ -28,19 +28,21 @@ var User = bookshelf.Model.extend({
 You can use Kalamata to expose this model to your API
 
 ```js
-// set up express and kalamata
-var app = require('express')();
-var kalamata = require('kalamata');
-var api = kalamata(app);
+// set up Hapi server and hapi-kalamata
+var Hapi = require('hapi');
+var server = new Hapi.Server();
+server.connection({ port: 3000 });
+var kalamata = require('hapi-kalamata');
+var api = kalamata(server);
 
 // expose the User model
 api.expose(User);
 
-// tell express to listen for incoming requests
-app.listen(8080, function() {
-    console.log('Server listening on port 8080');
+// Start Hapi server
+server.start(function(err){
+    if (err) throw err;
+    console.log('Server running at:', server.info.uri);
 });
-```
 
 which will create these endpoints
 
@@ -109,7 +111,7 @@ Configuring the API
 >  * prefixes all endpoints with `/api/v1`,
 >  * for example `/api/v1/users`
 >  */
-> var api = kalamata(app, { apiRoot: '/api/v1' });
+> var api = kalamata(server, { apiRoot: '/api/v1' });
 > ```
 
 
@@ -301,7 +303,7 @@ Hook names are generated based on endpoint configurations. This list is based on
 | `beforeRelatedThing`      | POST `/users/:id/things`  | [req, res, userModel]                 |
 | `afterRelateThing`        | POST `/users/:id/things`  | [req, res, userModel, thingModel]     |
 
-`req` and `res` are an Express [request](http://expressjs.com/4x/api.html#request) and [response](http://expressjs.com/4x/api.html#response)
+`req` and `res` are a Hapi [request](http://hapijs.com/api#request-properties) and [response](http://hapijs.com/api#response-properties)
 
 `userModel` is an instance of a [bookshelf model](http://bookshelfjs.org/#Model)
 
